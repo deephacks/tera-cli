@@ -1,0 +1,16 @@
+{
+  "usage": "json manipulations",
+  "progname": "jqs",
+  "need": "jq",
+  "path": "/home/stoffe/lib/jqs",
+  "cmds": {
+    "flatten": {
+      "name": "flatten",
+      "doc": "flatten json"
+    },
+    "comp1": {
+      "name": "flatten",
+      "doc": "flatten json"
+    }
+  }
+}

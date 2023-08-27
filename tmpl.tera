@@ -1,0 +1,29 @@
+__{{progname}}() {
+  local cur prev
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  
+  # shellcheck disable=SC2034
+  prev="${COMP_WORDS[COMP_CWORD - 1]}"
+  
+  # We can safely ignore warning SC2207 since it warns that it will uses the
+  # shell's sloppy word splitting and globbing. The possible commands here are
+  # all single words, and most likely won't contain special chars the shell will
+  # expand.      
+  
+  COMPREPLY=()
+
+  case "${COMP_CWORD}" in
+    {% if cmds %}
+    1)
+      # shellcheck disable=SC2207
+      COMPREPLY=( $(compgen -W "{{cmds.comp1.doc}}" -- "${cur}") )
+    ;;
+    {% endif %}    
+    {% if comp2 %}
+    2)
+      COMPREPLY=( $(compgen -W "{{comp2}}" -- "${cur}") )
+    ;;
+    {% endif %}    
+  esac
+}
+complete -F __{{progname}} {{progname}}
